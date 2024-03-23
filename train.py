@@ -1,16 +1,3 @@
-import torch
-from dataset import HorseZebraDataset
-import sys
-from utils import save_checkpoint, load_checkpoint
-from torch.utils.data import DataLoader
-import torch.nn as nn
-import torch.optim as optim
-import config
-from tqdm import tqdm
-from torchvision.utils import save_image
-from discriminator_model import Discriminator
-from generator_model import Generator
-
 """
 Training for CycleGAN
 
@@ -21,7 +8,6 @@ Programmed by Aladdin Persson <aladdin.persson at hotmail dot com>
 
 import torch
 from dataset import HorseZebraDataset
-import sys
 from utils import save_checkpoint, load_checkpoint
 from torch.utils.data import DataLoader
 import torch.nn as nn
@@ -29,8 +15,8 @@ import torch.optim as optim
 import config
 from tqdm import tqdm
 from torchvision.utils import save_image
-from discriminator_model import Discriminator
-from generator_model import Generator
+from model.discriminator_model import Discriminator
+from model.generator_model import Generator
 
 
 def train_fn(
