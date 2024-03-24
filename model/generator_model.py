@@ -69,9 +69,9 @@ class ResnetGenerator(nn.Module):
         return self.model(x)
 
 def test():
-    img_channels = 3
+    in_channels = 3
     img_size = 256
-    x = torch.randn((2, img_channels, img_size, img_size))
+    x = torch.randn((2, in_channels, img_size, img_size))
     gen = ResnetGenerator(in_channels=3,out_channels=3,n_filters=64,n_residual_blocks=6)
     print(gen(x).shape)
 
