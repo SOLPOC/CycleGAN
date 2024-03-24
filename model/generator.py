@@ -25,7 +25,7 @@ class UnetGenerator(nn.Module):
     pass
 
 class ResnetGenerator(nn.Module):
-    def __init__(self,in_channels,out_channels,n_filters,n_residual_blocks):
+    def __init__(self,in_channels,out_channels,n_residual_blocks):
         """
         Get a generator of resnet
         :param in_channels:
@@ -36,8 +36,8 @@ class ResnetGenerator(nn.Module):
         super().__init__()
         # initial convolution block
         model = [nn.ReflectionPad2d(3),
-                 nn.Conv2d(in_channels,n_filters,7),
-                 nn.InstanceNorm2d(n_filters),
+                 nn.Conv2d(in_channels,64,7),
+                 nn.InstanceNorm2d(64),
                  nn.ReLU(True)]
         # add downsampling layers
         in_features = 64
@@ -69,9 +69,9 @@ class ResnetGenerator(nn.Module):
         return self.model(x)
 
 def test():
-    in_channels = 3
+    img_channels = 3
     img_size = 256
-    x = torch.randn((2, in_channels, img_size, img_size))
+    x = torch.randn((2, img_channels, img_size, img_size))
     gen = ResnetGenerator(in_channels=3,out_channels=3,n_filters=64,n_residual_blocks=6)
     print(gen(x).shape)
 
