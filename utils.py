@@ -9,7 +9,7 @@ import sys
 
 from torch.autograd import Variable
 import torch
-from visdom import Visdom
+# from visdom import Visdom
 import numpy as np
 
 
@@ -53,7 +53,7 @@ def tensor2image(tensor):
 
 class Logger():
     def __init__(self, n_epochs, batches_epoch):
-        self.viz = Visdom()
+        # self.viz = Visdom()
         self.n_epochs = n_epochs
         self.batches_epoch = batches_epoch
         self.epoch = 1
@@ -147,6 +147,8 @@ class LambdaLR():
         self.decay_start_epoch = decay_start_epoch
 
     def step(self, epoch):
+        # 左边max函数当前epoch是否超过学习率开始衰减的epoch
+        # 右边为常数，为学习率衰减总epoch数，故线性衰减
         return 1.0 - max(0, epoch + self.offset - self.decay_start_epoch) / (self.n_epochs - self.decay_start_epoch)
 
 
